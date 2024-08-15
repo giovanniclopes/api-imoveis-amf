@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+
+p,
+span,
+label {
+  font-family: "Urbane Light", Roboto, sans-serif;
+}
+
+h1,
+h2 {
+  color: #202020;
+  font-family: "Urbane Bold", Roboto, sans-serif;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}

@@ -176,7 +176,7 @@ export function Home() {
               className={`border border-green-500 rounded-md p-3 text-base font-normal mbl:h-full ${
                 sortOrder === "asc"
                   ? "bg-green-500 text-blue-500"
-                  : "bg-blue-500 text-white"
+                  : "bg-blue-500 text-white border border-blue-500"
               }`}
             >
               Preço Crescente
@@ -186,7 +186,7 @@ export function Home() {
               className={`border border-blue-500 rounded-md p-3 text-base font-normal mbl:h-full ${
                 sortOrder === "desc"
                   ? "bg-green-500 text-blue-500"
-                  : "bg-blue-500 text-white"
+                  : "bg-white text-blue-500"
               }`}
             >
               Preço Decrescente
@@ -203,20 +203,24 @@ export function Home() {
           {currentImoveis.map((imovel, index) => (
             <div
               key={`${imovel.cep}-${index}`}
-              className="border border-gray-100 rounded-lg p-4"
+              className="border border-gray-100/40 rounded-lg p-4 shadow-md"
             >
               <img
                 src={imovel.fachada}
                 alt={imovel.nome}
-                className="w-full h-48 object-cover rounded"
+                className="w-full h-48 object-cover rounded-sm"
               />
-              <h2 className="font-semibold text-lg mt-2">{imovel.nome}</h2>
-              <p>
-                {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade}
-              </p>
-              <p>Preço: R$ {imovel.planta.preco?.toLocaleString()}</p>
-              <p>Dorms: {imovel.planta.dorms ?? "0"}</p>
-              <p>Vagas: {imovel.planta.vagas ?? "0"}</p>
+              <div className="">
+                <h2 className="font-semibold text-lg mt-2">{imovel.nome}</h2>
+                <p>
+                  {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade}
+                </p>
+                <p>Preço: R$ {imovel.planta.preco?.toLocaleString()}</p>
+                <div className="flex gap-2 mt-5">
+                  <p className="p-2 border border-blue-500 rounded">Dorms: {imovel.planta.dorms ?? "0"}</p>
+                  <p className="p-2 border border-blue-500 rounded">Vagas: {imovel.planta.vagas ?? "0"}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

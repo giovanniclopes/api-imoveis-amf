@@ -7,6 +7,10 @@ import MapComponent from "../components/LocationMap";
 
 import carIcon from "../assets/icons/car.svg";
 import bedroomIcon from "../assets/icons/bedroom.svg";
+import configIcon from "../assets/icons/config.svg";
+import filterAscendingIcon from "../assets/icons/filter-ascending-blue.svg";
+import filterDescendingIcon from "../assets/icons/filter-descending-blue.svg";
+import measureIcon from "../assets/icons/measure.svg";
 
 Modal.setAppElement("#root");
 
@@ -173,36 +177,39 @@ export function Home() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="border rounded-md px-4 py-2 w-96 focus:border focus:border-blue-500 focus:outline-none mbl:w-full"
           />
-          <div className="flex space-x-4 mbl:grid mbl:grid-cols-2 mbl:items-center mbl:justify-center mbl:gap-3 mbl:mt-3 mbl:space-x-0 mbl:w-full">
+          <div className="flex space-x-4 mbl:grid mbl:grid-cols-1 mbl:items-center mbl:justify-center mbl:gap-3 mbl:mt-3 mbl:space-x-0 mbl:w-full">
             <button
               onClick={() => setSortOrder("asc")}
-              className={`border rounded-md p-3 text-base font-medium mbl:h-full ${
+              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full ${
                 sortOrder === "asc"
                   ? "bg-green-500 text-blue-500 border-green-500"
                   : "bg-white text-blue-500 border border-gray-500"
               }`}
             >
+              <img width={24} src={filterAscendingIcon} alt="" />
               Preço Crescente
             </button>
             <button
               onClick={() => setSortOrder("desc")}
-              className={`border rounded-md p-3 text-base font-medium mbl:h-full ${
+              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full ${
                 sortOrder === "desc"
                   ? "bg-green-500 text-blue-500 border-green-500"
                   : "bg-white text-blue-500 border-gray-500"
               }`}
             >
+              <img width={24} src={filterDescendingIcon} alt="" />
               Preço Decrescente
             </button>
             <button
               onClick={() => setModalIsOpen(true)}
-              className="border border-blue-500 rounded-md p-3 text-base bg-white text-blue-500 mbl:w-full"
+              className="flex items-center justify-center gap-3 p-3 font-medium text-base bg-white text-blue-500 border border-gray-500 rounded-md mbl:w-full"
             >
+              <img width={18} src={configIcon} alt="" />
               Filtrar Imóveis
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mbl:grid-cols-1">
           {currentImoveis.map((imovel, index) => (
             <div
               key={`${imovel.cep}-${index}`}
@@ -214,14 +221,18 @@ export function Home() {
                 className="w-full h-80 object-cover rounded-t"
               />
               <div className="p-5 pb-10">
-                <div className="flex mt-1 mb-4 gap-5">
-                  <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded">
+                <div className="flex mt-1 mb-4 gap-5 mbl:mb-8 mbl:items-center mbl:justify-between">
+                  <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
                     <img width={26} src={bedroomIcon} alt="" />
                     Dorms: {imovel.planta.dorms ?? "0"}
                   </div>
-                  <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded">
+                  <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
                     <img width={26} src={carIcon} alt="" />
                     Vagas: {imovel.planta.vagas ?? "0"}
+                  </div>
+                  <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
+                    <img width={23} src={measureIcon} alt="" />
+                    {imovel.planta.metragem ?? "0"}m²
                   </div>
                 </div>
                 <h2 className="font-medium text-xl my-2 text-blue-500">
@@ -232,7 +243,9 @@ export function Home() {
                   <span className="font-light text-base">total</span>
                 </div>
                 <p>
-                  {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade}
+                  {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade},
+                  <br />
+                  {imovel.cep}
                 </p>
               </div>
             </div>

@@ -111,7 +111,7 @@ export function NearbyImoveis() {
   }, [userLocation, imoveis]);
 
   return (
-    <section className="my-16 p-4 border border-gray-100/40 rounded-md mbl:my-10">
+    <section className="my-16 mx-auto p-6 w-max border border-gray-100/40 rounded-md mbl:my-10">
       <h2 className="text-xl font-medium uppercase mb-4">
         Imóveis próximos a você
       </h2>
@@ -137,6 +137,7 @@ export function NearbyImoveis() {
                   <img
                     src={imovel.fachada}
                     alt={imovel.nome}
+                    draggable="false"
                     className="w-24 h-16 object-cover rounded mr-4"
                   />
                   <div className="flex flex-col">

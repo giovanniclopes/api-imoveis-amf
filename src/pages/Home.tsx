@@ -11,6 +11,7 @@ import configIcon from "../assets/icons/config.svg";
 import filterAscendingIcon from "../assets/icons/filter-ascending-blue.svg";
 import filterDescendingIcon from "../assets/icons/filter-descending-blue.svg";
 import measureIcon from "../assets/icons/measure.svg";
+import searchIcon from "../assets/icons/search.svg";
 
 Modal.setAppElement("#root");
 
@@ -193,7 +194,7 @@ export function Home() {
   const totalPages = Math.ceil(filteredAndSortedImoveis.length / itemsPerPage);
 
   return (
-    <main id="root" className="container mx-auto p-6 px-12 mbl:px-6">
+    <main id="root" className=" mx-auto mbl:px-6">
       <h1 className="text-2xl font-bold mb-4">Lista de Imóveis</h1>
       <NearbyImoveis />
 
@@ -215,19 +216,46 @@ export function Home() {
         setMaxVagas={setMaxVagas}
         resetFilters={resetFilters}
       />
-
-      <section>
+      <section className="">
+        <div className="grid grid-cols-2 grid-flow-dense bg-gray-100">
+          <div className="flex flex-col gap-6 items-start justify-center">
+            <h1 className="flex flex-col items-center justify-center font-normal text-6xl leading-normal">
+              As chaves para
+              <br />
+              <span className="text-7xl font-extrabold">O Seu Imóvel</span>
+            </h1>
+            <p className="text-lg">
+              Somos uma incorporadora que busca melhorar a experiência de
+              consumo do mercado imobiliário.
+            </p>
+            <div className="flex flex-row items-center justify-center h-14">
+              <input
+                type="text"
+                placeholder="Pesquisar imóveis..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="border rounded-l-md px-4 w-96 h-full focus:border focus:border-blue-500 focus:outline-none mbl:w-full"
+              />
+              <button
+                className="flex flex-col items-center justify-center h-full px-6 rounded-r-md bg-green-500"
+                onClick={(e) => {
+                  document
+                    .getElementById("imoveis")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <img width={32} src={searchIcon} alt="" />
+              </button>
+            </div>
+          </div>
+          <div></div>
+        </div>
+      </section>
+      <section className="container mx-auto mt-12">
         <h2 className="text-3xl font-extrabold uppercase mb-4 mbl:text-2xl">
           Imóveis disponíveis
         </h2>
         <section className="flex space-x-4 mb-4 mbl:flex-col mbl:items-center mbl:justify-center mbl:space-x-0">
-          <input
-            type="text"
-            placeholder="Pesquisar imóveis..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="border rounded-md px-4 py-2 w-96 focus:border focus:border-blue-500 focus:outline-none mbl:w-full"
-          />
           <div className="flex space-x-4 mbl:grid mbl:grid-cols-1 mbl:items-center mbl:justify-center mbl:gap-3 mbl:mt-3 mbl:space-x-0 mbl:w-full">
             <button
               onClick={() => setSortOrder("asc")}
@@ -237,7 +265,12 @@ export function Home() {
                   : "bg-white text-blue-500 border border-gray-500"
               }`}
             >
-              <img width={24} src={filterAscendingIcon} alt="" />
+              <img
+                width={24}
+                src={filterAscendingIcon}
+                draggable="false"
+                alt=""
+              />
               Preço Crescente
             </button>
             <button
@@ -248,19 +281,27 @@ export function Home() {
                   : "bg-white text-blue-500 border-gray-500"
               }`}
             >
-              <img width={24} src={filterDescendingIcon} alt="" />
+              <img
+                width={24}
+                src={filterDescendingIcon}
+                draggable="false"
+                alt=""
+              />
               Preço Decrescente
             </button>
             <button
               onClick={() => setModalIsOpen(true)}
               className="flex items-center justify-center gap-3 p-3 font-medium text-base bg-white text-blue-500 border border-gray-500 rounded-md mbl:w-full transition-all hover:opacity-85"
             >
-              <img width={18} src={configIcon} alt="" />
+              <img width={18} src={configIcon} draggable="false" alt="" />
               Filtrar Imóveis
             </button>
           </div>
         </section>
-        <section className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mbl:grid-cols-1">
+        <section
+          id="imoveis"
+          className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mbl:grid-cols-1"
+        >
           {currentImoveis.map((imovel, index) => (
             <div
               key={`${imovel.cep}-${index}`}
@@ -269,20 +310,31 @@ export function Home() {
               <img
                 src={imovel.fachada}
                 alt={imovel.nome}
+                draggable="false"
                 className="w-full h-80 object-cover rounded-t"
               />
               <div className="p-5 pb-10">
                 <div className="flex mt-1 mb-4 gap-5 mbl:mb-8 mbl:items-center mbl:justify-between">
                   <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
-                    <img width={26} src={bedroomIcon} alt="" />
+                    <img
+                      width={26}
+                      src={bedroomIcon}
+                      draggable="false"
+                      alt=""
+                    />
                     Dorms: {imovel.planta.dorms ?? "0"}
                   </div>
                   <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
-                    <img width={26} src={carIcon} alt="" />
+                    <img width={26} src={carIcon} draggable="false" alt="" />
                     Vagas: {imovel.planta.vagas ?? "0"}
                   </div>
                   <div className="flex flex-row items-center justify-center gap-2 bg-white text-blue-500 font-medium rounded mbl:flex-col mbl:items-center mbl:justify-center mbl:text-center">
-                    <img width={23} src={measureIcon} alt="" />
+                    <img
+                      width={23}
+                      src={measureIcon}
+                      draggable="false"
+                      alt=""
+                    />
                     {imovel.planta.metragem ?? "0"}m²
                   </div>
                 </div>
@@ -307,7 +359,12 @@ export function Home() {
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
-              onClick={() => handlePageChange(index + 1)}
+              onClick={() => {
+                handlePageChange(index + 1);
+                document
+                  .getElementById("imoveis")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }}
               className={`border rounded px-4 py-2 mx-1 transition-all hover:opacity-85 ${
                 currentPage === index + 1
                   ? "bg-blue-500 text-white"
@@ -318,7 +375,8 @@ export function Home() {
             </button>
           ))}
         </div>
-        <div className="grid grid-cols-2 gap-8 mt-24">
+
+        <div className="grid grid-cols-2 gap-8 mt-24 mbl:grid-cols-1">
           <div>
             <h2 className="text-3xl font-extrabold text-gray-500 uppercase mb-7">
               Explore o Nosso Mapa Interativo de Empreendimentos Imobiliários

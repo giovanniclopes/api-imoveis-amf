@@ -17,7 +17,7 @@ h3 {
 }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: #202020;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -28,4 +28,32 @@ h3 {
   justify-content: center;
   align-items: center;
   z-index: 999;
+}
+
+
+body {
+  --sb-track-color: #202020;
+  --sb-thumb-color: #15aaa6;
+  --sb-size: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #202020;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #15aaa6;
+  border-radius: 20px;
+
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: #15aaa6 #202020;
+  }
 }

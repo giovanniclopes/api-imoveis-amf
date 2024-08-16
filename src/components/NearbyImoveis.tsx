@@ -113,7 +113,7 @@ export function NearbyImoveis() {
   return (
     <section className="my-16 p-4 border border-gray-100/40 rounded-md mbl:my-10">
       <h2 className="text-xl font-medium uppercase mb-4">
-        Apartamentos próximos a você
+        Imóveis próximos a você
       </h2>
       {locationError ? (
         <div>

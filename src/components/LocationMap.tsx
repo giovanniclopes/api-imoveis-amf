@@ -14,6 +14,9 @@ interface ImovelProps {
   cidade: string;
   planta: {
     preco: number;
+    dorms: number | "0";
+    metragem: number;
+    vagas: number | "0";
   };
   location: {
     _lat: number;
@@ -47,10 +50,10 @@ const MapComponent: React.FC<MapComponentProps> = ({ imoveis }) => {
 
   return (
     <MapContainer
-      style={{ height: "400px", width: "100%" }}
+      style={{ height: "500px", width: "100%" }}
       center={centerPosition} // Remove esta linha
       zoom={14}
-      scrollWheelZoom={false} // Opcional, dependendo das necessidades
+      scrollWheelZoom={true}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -71,6 +74,11 @@ const MapComponent: React.FC<MapComponentProps> = ({ imoveis }) => {
                 alt={imovel.nome}
                 style={{ width: "100px", height: "60px", objectFit: "cover" }}
               />
+              <p>
+                Dorms: {imovel.planta.dorms}
+                <br />
+                Metragem: {imovel.planta.metragem}m²
+              </p>
               <h3>{imovel.nome}</h3>
               <p>
                 {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade}

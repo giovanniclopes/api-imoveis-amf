@@ -132,6 +132,57 @@ export function Home() {
     setCurrentPage(page);
   };
 
+  interface AccordionItemProps {
+    title: string;
+    content: string;
+  }
+
+  const AccordionItem = ({ title, content }: AccordionItemProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleAccordion = () => {
+      setIsOpen(!isOpen);
+    };
+
+    return (
+      <div className="border-b border-gray-200">
+        <button
+          onClick={toggleAccordion}
+          className="w-full text-left py-4 flex justify-between items-center focus:outline-none"
+        >
+          <h4 className="text-xl font-semibold text-blue-600">{title}</h4>
+          <span
+            className={`transform transition-transform ${
+              isOpen ? "rotate-180" : "rotate-0"
+            }`}
+          >
+            ▼
+          </span>
+        </button>
+        {isOpen && <p className="text-gray-700 pb-4">{content}</p>}
+      </div>
+    );
+  };
+  const faqs = [
+    {
+      title: "O que é um empreendimento imobiliário?",
+      content:
+        "Um empreendimento imobiliário é um projeto de desenvolvimento urbano que envolve a construção de imóveis residenciais, comerciais ou mistos. Pode incluir a venda de lotes, construção de edifícios, ou desenvolvimento de bairros inteiros.",
+    },
+    {
+      title:
+        "Quais são os benefícios de investir em um empreendimento imobiliário?",
+      content:
+        "Investir em empreendimentos imobiliários pode gerar valorização do patrimônio, renda passiva através de aluguéis, além de segurança financeira a longo prazo. Também oferece a possibilidade de participar do crescimento urbano e da expansão de áreas em desenvolvimento.",
+    },
+    {
+      title:
+        "Como posso saber se um empreendimento imobiliário é seguro para investir?",
+      content:
+        "Verifique a reputação da construtora, o histórico de entrega de projetos anteriores, a localização do empreendimento e a existência de garantias e licenças legais. Aconselha-se também consultar um advogado especializado em direito imobiliário.",
+    },
+  ];
+
   // Paginação
   const indexOfLastImovel = currentPage * itemsPerPage;
   const indexOfFirstImovel = indexOfLastImovel - itemsPerPage;
@@ -142,7 +193,7 @@ export function Home() {
   const totalPages = Math.ceil(filteredAndSortedImoveis.length / itemsPerPage);
 
   return (
-    <div id="root" className="container mx-auto p-6 px-12 mbl:px-6">
+    <main id="root" className="container mx-auto p-6 px-12 mbl:px-6">
       <h1 className="text-2xl font-bold mb-4">Lista de Imóveis</h1>
       <NearbyImoveis />
 
@@ -165,11 +216,11 @@ export function Home() {
         resetFilters={resetFilters}
       />
 
-      <div>
+      <section>
         <h2 className="text-3xl font-extrabold uppercase mb-4 mbl:text-2xl">
           Imóveis disponíveis
         </h2>
-        <div className="flex space-x-4 mb-4 mbl:flex-col mbl:items-center mbl:justify-center mbl:space-x-0">
+        <section className="flex space-x-4 mb-4 mbl:flex-col mbl:items-center mbl:justify-center mbl:space-x-0">
           <input
             type="text"
             placeholder="Pesquisar imóveis..."
@@ -180,7 +231,7 @@ export function Home() {
           <div className="flex space-x-4 mbl:grid mbl:grid-cols-1 mbl:items-center mbl:justify-center mbl:gap-3 mbl:mt-3 mbl:space-x-0 mbl:w-full">
             <button
               onClick={() => setSortOrder("asc")}
-              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full ${
+              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full transition-all hover:opacity-85 ${
                 sortOrder === "asc"
                   ? "bg-green-500 text-blue-500 border-green-500"
                   : "bg-white text-blue-500 border border-gray-500"
@@ -191,7 +242,7 @@ export function Home() {
             </button>
             <button
               onClick={() => setSortOrder("desc")}
-              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full ${
+              className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full transition-all hover:opacity-85 ${
                 sortOrder === "desc"
                   ? "bg-green-500 text-blue-500 border-green-500"
                   : "bg-white text-blue-500 border-gray-500"
@@ -202,14 +253,14 @@ export function Home() {
             </button>
             <button
               onClick={() => setModalIsOpen(true)}
-              className="flex items-center justify-center gap-3 p-3 font-medium text-base bg-white text-blue-500 border border-gray-500 rounded-md mbl:w-full"
+              className="flex items-center justify-center gap-3 p-3 font-medium text-base bg-white text-blue-500 border border-gray-500 rounded-md mbl:w-full transition-all hover:opacity-85"
             >
               <img width={18} src={configIcon} alt="" />
               Filtrar Imóveis
             </button>
           </div>
-        </div>
-        <div className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mbl:grid-cols-1">
+        </section>
+        <section className="grid gap-4 lg:grid-cols-3 md:grid-cols-2 mbl:grid-cols-1">
           {currentImoveis.map((imovel, index) => (
             <div
               key={`${imovel.cep}-${index}`}
@@ -250,14 +301,14 @@ export function Home() {
               </div>
             </div>
           ))}
-        </div>
+        </section>
         {/* Paginação */}
         <div className="flex justify-center mt-4">
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
               onClick={() => handlePageChange(index + 1)}
-              className={`border rounded px-4 py-2 mx-1 ${
+              className={`border rounded px-4 py-2 mx-1 transition-all hover:opacity-85 ${
                 currentPage === index + 1
                   ? "bg-blue-500 text-white"
                   : "bg-white text-blue-500"
@@ -267,10 +318,34 @@ export function Home() {
             </button>
           ))}
         </div>
-        <div className="mt-12 rounded-md border overflow-auto">
-          <MapComponent imoveis={filteredAndSortedImoveis} />
+        <div className="grid grid-cols-2 gap-8 mt-24">
+          <div>
+            <h2 className="text-3xl font-extrabold text-gray-500 uppercase mb-7">
+              Explore o Nosso Mapa Interativo de Empreendimentos Imobiliários
+            </h2>
+            <p className="text-base mb-8">
+              Navegue pelo mapa para descobrir as localizações dos nossos
+              empreendimentos imobiliários em desenvolvimento. Veja as áreas em
+              crescimento, oportunidades de investimento, e encontre o imóvel
+              dos seus sonhos na localização perfeita.
+            </p>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem
+                  key={index}
+                  title={faq.title}
+                  content={faq.content}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded overflow-hidden">
+            {/* Coloque o componente de mapa aqui */}
+            <MapComponent imoveis={filteredAndSortedImoveis} />
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

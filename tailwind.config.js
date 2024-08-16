@@ -6,6 +6,10 @@ export default {
        screens: {
         mbl: { max: "630px" },
       },
+      fontFamily: {
+        urbaneLight:'Urbane Light, Roboto, sans-serif',
+        urbaneBold:'Urbane Bold, Roboto, sans-serif',
+      },
       colors: {
         green: {
           100: "#e0f5f5",
@@ -30,6 +34,7 @@ export default {
           900: "#000b13"
         },
         gray: {
+          50: "#eeeeee",
           100: "#d2d2d2",
           200: "#b5b5b5",
           300: "#777777",

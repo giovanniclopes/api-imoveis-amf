@@ -1,3 +1,5 @@
+import { BackToTopButton } from "./components/BackToTopButton";
+import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Home } from "./pages/Home";
 
@@ -6,6 +8,8 @@ function App() {
     <div>
       <Header />
       <Home />
+      <BackToTopButton />
+      <Footer />
     </div>
   );
 }

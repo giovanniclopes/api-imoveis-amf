@@ -120,6 +120,7 @@ export function ImoveisNearby() {
           <div>
             <p>{locationError}</p>
             <button
+              aria-label="Tentar habilitar localização novamente"
               onClick={getLocation}
               className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
             >
@@ -165,6 +166,7 @@ export function ImoveisNearby() {
           <p>Obtendo localização...</p>
         ) : (
           <button
+            aria-label="Permitir localização do dispositivo"
             onClick={getLocation}
             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
           >

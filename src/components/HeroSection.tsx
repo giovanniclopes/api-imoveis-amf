@@ -76,6 +76,7 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
                 className="border rounded-l-md px-4 w-full h-full focus:border-2 focus:border-green-500 focus:outline-none mbl:w-full"
               />
               <button
+                aria-label="Pesquisar imóvel"
                 className="flex flex-col items-center justify-center h-full px-6 rounded-r-md bg-green-500"
                 onClick={handleSearch}
               >

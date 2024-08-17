@@ -105,12 +105,14 @@ export function FilterModal({
       </div>
       <div className="flex justify-between">
         <button
+          aria-label="Reiniciar filtros de busca"
           onClick={resetFilters}
           className="border border-blue-500 rounded px-4 py-2 bg-white text-blue-500 transition-all hover:bg-green-500 hover:border-green-500"
         >
           Limpar Filtros
         </button>
         <button
+          aria-label="Fechar caixa de filtros"
           onClick={onRequestClose}
           className="border border-blue-500 rounded px-4 py-2 bg-blue-500 text-white transition-all hover:opacity-85"
         >

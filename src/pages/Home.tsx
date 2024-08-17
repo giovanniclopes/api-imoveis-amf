@@ -142,10 +142,13 @@ export function Home() {
     return (
       <div className="border-b border-gray-200">
         <button
+          aria-label="Abrir Perguntas Frequentes"
           onClick={toggleAccordion}
           className="w-full text-left py-4 flex justify-between items-center focus:outline-none"
         >
-          <h4 className="text-xl font-semibold text-blue-600 mbl:text-lg">{title}</h4>
+          <h4 className="text-xl font-semibold text-blue-600 mbl:text-lg">
+            {title}
+          </h4>
           <span
             className={`transform transition-transform ${
               isOpen ? "rotate-180" : "rotate-0"
@@ -216,6 +219,7 @@ export function Home() {
         <section className="flex space-x-4 mb-4 mbl:flex-col mbl:items-center mbl:justify-center mbl:space-x-0">
           <div className="flex space-x-4 mbl:grid mbl:grid-cols-1 mbl:items-center mbl:justify-center mbl:gap-3 mbl:mt-3 mbl:space-x-0 mbl:w-full">
             <button
+              aria-label="Filtrar imóveis por ascendência"
               onClick={() => setSortOrder("asc")}
               className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full transition-all hover:opacity-85 ${
                 sortOrder === "asc"
@@ -232,6 +236,7 @@ export function Home() {
               Preço Crescente
             </button>
             <button
+              aria-label="Filtrar imóveis por descendência"
               onClick={() => setSortOrder("desc")}
               className={`flex items-center justify-center gap-2 border rounded-md p-3 text-base font-medium mbl:h-full transition-all hover:opacity-85 ${
                 sortOrder === "desc"
@@ -248,6 +253,7 @@ export function Home() {
               Preço Decrescente
             </button>
             <button
+              aria-label="Filtrar imóveis"
               onClick={() => setModalIsOpen(true)}
               className="flex items-center justify-center gap-3 p-3 font-medium text-base bg-white text-blue-500 border border-gray-500 rounded-md mbl:w-full transition-all hover:opacity-85"
             >
@@ -317,6 +323,7 @@ export function Home() {
           {Array.from({ length: totalPages }, (_, index) => (
             <button
               key={index}
+              aria-label="Mudar de página"
               onClick={() => {
                 handlePageChange(index + 1);
                 document

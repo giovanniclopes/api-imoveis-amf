@@ -28,6 +28,7 @@ export function BackToTopButton() {
     <div className="fixed bottom-5 right-5">
       {isVisible && (
         <button
+          aria-label="Voltar ao topo do site"
           onClick={scrollToTop}
           className="bg-gray-500 text-white p-1 rounded-full shadow-md hover:bg-blue-700 focus:outline-none"
         >

@@ -11,7 +11,7 @@ export default {
         urbaneBold:'Urbane Bold, Roboto, sans-serif',
       },
       backgroundImage: {
-        heroSection:'url(../src/assets/hero-img-mbl.webp)',
+        heroSection:'url(/src/assets/hero-img-mbl.webp)',
       },
       colors: {
         green: {

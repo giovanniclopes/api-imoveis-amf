@@ -1,8 +1,8 @@
-// src/components/MapComponent.tsx
 import React, { Key } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+
 import { LatLngExpression } from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 interface ImovelProps {
   cep: Key | null | undefined;
@@ -39,10 +39,8 @@ const MapCenterSetter: React.FC<{ position: LatLngExpression }> = ({
 };
 
 const MapComponent: React.FC<MapComponentProps> = ({ imoveis }) => {
-  // Defina um local padrão se não houver imóveis
   const defaultPosition: LatLngExpression = [0, 0];
 
-  // Se houver imóveis, defina a posição central como o local do primeiro imóvel
   const centerPosition: LatLngExpression =
     imoveis.length > 0
       ? [imoveis[0].location._lat, imoveis[0].location._long]
@@ -51,7 +49,7 @@ const MapComponent: React.FC<MapComponentProps> = ({ imoveis }) => {
   return (
     <MapContainer
       style={{ height: "500px", width: "100%" }}
-      center={centerPosition} // Remove esta linha
+      center={centerPosition}
       zoom={14}
       scrollWheelZoom={true}
     >

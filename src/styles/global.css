@@ -17,7 +17,7 @@ h3 {
 }
 
 .overlay {
-  background: #202020;
+  background: #202020de;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -28,13 +28,6 @@ h3 {
   justify-content: center;
   align-items: center;
   z-index: 999;
-}
-
-
-body {
-  --sb-track-color: #202020;
-  --sb-thumb-color: #15aaa6;
-  --sb-size: 10px;
 }
 
 body::-webkit-scrollbar {
@@ -58,14 +51,27 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+.custom-shape-divider-bottom {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
 
-.custom-shape-divider-top-1723859845 svg {
+.custom-shape-divider-bottom svg {
   position: relative;
   display: block;
-  width: calc(100% + 1.3px);
+  width: calc(130% + 1.3px);
   height: 150px;
 }
 
-.custom-shape-divider-top-1723859845 .shape-fill {
-  fill: #c9c9c9;
+.custom-shape-divider-bottom .shape-fill {
+  fill: #FFFFFF;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom svg {
+    width: calc(160% + 1.3px);
+    height: 60px;
+  }
 }

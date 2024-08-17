@@ -41,7 +41,7 @@ const getDistance = (
   return Radius * c;
 };
 
-export function NearbyImoveis() {
+export function ImoveisNearby() {
   const [imoveis, setImoveis] = useState<ImovelProps[]>([]);
   const [nearestImoveis, setNearestImoveis] = useState<ImovelProps[]>([]);
   const [userLocation, setUserLocation] = useState<{
@@ -49,11 +49,11 @@ export function NearbyImoveis() {
     lon: number;
   } | null>(null);
   const [locationError, setLocationError] = useState<string | null>(null);
-  const [requestingLocation, setRequestingLocation] = useState(false); // Novo estado
+  const [requestingLocation, setRequestingLocation] = useState(false);
 
   const getLocation = () => {
     setLocationError(null);
-    setRequestingLocation(true); // Inicia a solicitação de localização
+    setRequestingLocation(true);
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -62,20 +62,20 @@ export function NearbyImoveis() {
             lat: position.coords.latitude,
             lon: position.coords.longitude,
           });
-          setRequestingLocation(false); // Reseta o estado ao obter a localização
+          setRequestingLocation(false);
         },
         (error) => {
           console.error("Erro ao obter localização:", error);
           setLocationError(
             "Não foi possível obter a localização. Verifique suas permissões e configurações de localização."
           );
-          setRequestingLocation(false); // Reseta o estado em caso de erro
+          setRequestingLocation(false);
         },
-        { timeout: 10000 } // Tempo limite de 10 segundos para obter a localização
+        { timeout: 10000 }
       );
     } else {
       setLocationError("Geolocalização não é suportada pelo seu navegador.");
-      setRequestingLocation(false); // Reseta o estado se a geolocalização não for suportada
+      setRequestingLocation(false);
     }
   };
 
@@ -89,7 +89,7 @@ export function NearbyImoveis() {
       }
     };
     loadImoveis();
-    getLocation(); // Tenta obter a localização ao montar o componente
+    getLocation();
   }, []);
 
   useEffect(() => {
@@ -111,65 +111,67 @@ export function NearbyImoveis() {
   }, [userLocation, imoveis]);
 
   return (
-    <section className="my-16 mt-1 mx-auto p-6 w-max border border-gray-100/40 rounded-md mbl:my-10 mbl:w-full">
-      <h2 className="text-xl font-medium uppercase mb-4">
-        Imóveis próximos a você
-      </h2>
-      {locationError ? (
-        <div>
-          <p>{locationError}</p>
+    <section className="my-16 mt-1 mx-auto w-max mbl:w-full mbl:px-6">
+      <div className="p-6 border border-gray-100/40 rounded-md">
+        <h2 className="text-xl font-medium uppercase mb-4">
+          Imóveis próximos a você
+        </h2>
+        {locationError ? (
+          <div>
+            <p>{locationError}</p>
+            <button
+              onClick={getLocation}
+              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
+            >
+              Tentar Novamente
+            </button>
+          </div>
+        ) : userLocation ? (
+          <div>
+            {nearestImoveis.length > 0 ? (
+              <div className="lg:flex">
+                {nearestImoveis.map((imovel) => (
+                  <div
+                    key={imovel.cep}
+                    className="flex items-center border-l border-gray-100 p-2 mbl:border-b mbl:border-l-0"
+                  >
+                    <img
+                      src={imovel.fachada}
+                      alt={imovel.nome}
+                      draggable="false"
+                      className="w-24 h-16 object-cover rounded mr-4"
+                    />
+                    <div className="flex flex-col">
+                      <h3 className="font-semibold text-sm">{imovel.nome}</h3>
+                      <p className="text-sm">
+                        {imovel.rua}, {imovel.num} - {imovel.bairro},{" "}
+                        {imovel.cidade}
+                      </p>
+                      <p className="text-sm">
+                        Preço: R$ {imovel.planta.preco?.toLocaleString()}
+                      </p>
+                      <p className="text-sm">
+                        Distância: {(imovel.distance || 0).toFixed(2)} km
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p>Não há imóveis próximos disponíveis.</p>
+            )}
+          </div>
+        ) : requestingLocation ? (
+          <p>Obtendo localização...</p>
+        ) : (
           <button
             onClick={getLocation}
             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
           >
-            Tentar Novamente
+            Permitir Localização
           </button>
-        </div>
-      ) : userLocation ? (
-        <div>
-          {nearestImoveis.length > 0 ? (
-            <div className="lg:flex">
-              {nearestImoveis.map((imovel) => (
-                <div
-                  key={imovel.cep}
-                  className="flex items-center border-l border-gray-100 p-2 mbl:border-b mbl:border-l-0"
-                >
-                  <img
-                    src={imovel.fachada}
-                    alt={imovel.nome}
-                    draggable="false"
-                    className="w-24 h-16 object-cover rounded mr-4"
-                  />
-                  <div className="flex flex-col">
-                    <h3 className="font-semibold text-sm">{imovel.nome}</h3>
-                    <p className="text-sm">
-                      {imovel.rua}, {imovel.num} - {imovel.bairro},{" "}
-                      {imovel.cidade}
-                    </p>
-                    <p className="text-sm">
-                      Preço: R$ {imovel.planta.preco?.toLocaleString()}
-                    </p>
-                    <p className="text-sm">
-                      Distância: {(imovel.distance || 0).toFixed(2)} km
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p>Não há imóveis próximos disponíveis.</p>
-          )}
-        </div>
-      ) : requestingLocation ? (
-        <p>Obtendo localização...</p>
-      ) : (
-        <button
-          onClick={getLocation}
-          className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
-        >
-          Permitir Localização
-        </button>
-      )}
+        )}
+      </div>
     </section>
   );
 }

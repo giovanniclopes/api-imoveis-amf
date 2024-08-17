@@ -1,4 +1,4 @@
-import logo from "../assets/black.png";
+import logo from "../assets/logo.png";
 
 export function Header() {
   return (
@@ -8,7 +8,7 @@ export function Header() {
           <img
             className="w-auto h-[60px] md:h-[70px] md:hover:cursor-pointer"
             src={logo}
-            alt="Logo AM Fernandes Incorporadora"
+            alt="Logo fictícia GCL Imóveis"
           />
         </a>
       </div>

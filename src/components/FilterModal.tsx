@@ -43,14 +43,13 @@ export function FilterModal({
       className="bg-white max-w-[500px] w-full relative z-[1000] m-auto p-5 rounded-lg mbl:m-6"
       overlayClassName="overlay"
     >
-      <h2 className="text-lg font-semibold mb-4">Filtros</h2>
       <div className="mb-4">
         <label className="block mb-1">Preço Mínimo</label>
         <input
           type="number"
           value={minPreco}
           onChange={(e) => setMinPreco(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Preço Mínimo"
         />
       </div>
@@ -60,7 +59,7 @@ export function FilterModal({
           type="number"
           value={maxPreco}
           onChange={(e) => setMaxPreco(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Preço Máximo"
         />
       </div>
@@ -70,7 +69,7 @@ export function FilterModal({
           type="number"
           value={minDorms}
           onChange={(e) => setMinDorms(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Dormitórios Mínimos"
         />
       </div>
@@ -80,7 +79,7 @@ export function FilterModal({
           type="number"
           value={maxDorms}
           onChange={(e) => setMaxDorms(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Dormitórios Máximos"
         />
       </div>
@@ -90,7 +89,7 @@ export function FilterModal({
           type="number"
           value={minVagas}
           onChange={(e) => setMinVagas(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Vagas Mínimas"
         />
       </div>
@@ -100,7 +99,7 @@ export function FilterModal({
           type="number"
           value={maxVagas}
           onChange={(e) => setMaxVagas(Number(e.target.value))}
-          className="border rounded px-2 py-1 w-full"
+          className="border focus:border focus:border-blue-500 focus:outline-none rounded px-2 py-1 w-full"
           placeholder="Vagas Máximas"
         />
       </div>

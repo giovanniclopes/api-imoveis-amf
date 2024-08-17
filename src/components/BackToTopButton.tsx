@@ -29,7 +29,7 @@ export function BackToTopButton() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="bg-blue-500 text-white p-1 rounded-full shadow-md hover:bg-blue-700 focus:outline-none"
+          className="bg-gray-500 text-white p-1 rounded-full shadow-md hover:bg-blue-700 focus:outline-none"
         >
           <img width={46} src={topIcon} alt="" />
         </button>

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { fetchImoveis } from "../api/apiImoveis";
-import { NearbyImoveis } from "../components/NearbyImoveis";
+import { ImoveisNearby } from "../components/ImoveisNearby";
 import { FilterModal } from "../components/FilterModal";
 import MapComponent from "../components/LocationMap";
-
 
 import carIcon from "../assets/icons/car.svg";
 import bedroomIcon from "../assets/icons/bedroom.svg";
@@ -13,7 +12,6 @@ import filterAscendingIcon from "../assets/icons/filter-ascending-blue.svg";
 import filterDescendingIcon from "../assets/icons/filter-descending-blue.svg";
 import measureIcon from "../assets/icons/measure.svg";
 import { HeroSection } from "../components/HeroSection";
-import { ShapeDivider } from "../components/ShapeDivider";
 
 Modal.setAppElement("#root");
 
@@ -32,7 +30,6 @@ interface ImovelProps {
     vagas: number | "0";
   };
   location: {
-    // Adicione esta propriedade
     _lat: number;
     _long: number;
   };
@@ -40,7 +37,7 @@ interface ImovelProps {
 
 export function Home() {
   const [imoveis, setImoveis] = useState<ImovelProps[]>([]);
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc"); // 'asc' para crescente e 'desc' para decrescente
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [minPreco, setMinPreco] = useState<number>(0);
   const [maxPreco, setMaxPreco] = useState<number>(Infinity);
   const [minDorms, setMinDorms] = useState<number>(0);
@@ -48,12 +45,10 @@ export function Home() {
   const [minVagas, setMinVagas] = useState<number>(0);
   const [maxVagas, setMaxVagas] = useState<number>(10);
 
-  // Novo estado para a pesquisa
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  // Novo estado para paginação
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 24;
 
@@ -84,7 +79,6 @@ export function Home() {
           ? parseFloat(imovel.planta.vagas)
           : imovel.planta.vagas;
 
-      // Verifica se o imóvel corresponde à pesquisa
       const matchesSearchQuery =
         imovel.nome.toLowerCase().includes(searchQuery.toLowerCase()) ||
         imovel.bairro.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -118,7 +112,6 @@ export function Home() {
       return sortOrder === "asc" ? precoA - precoB : precoB - precoA;
     });
 
-  // Função para limpar filtros
   const resetFilters = () => {
     setMinPreco(0);
     setMaxPreco(Infinity);
@@ -126,11 +119,10 @@ export function Home() {
     setMaxDorms(10);
     setMinVagas(0);
     setMaxVagas(10);
-    setSearchQuery(""); // Resetar a busca
-    setCurrentPage(1); // Voltar para a primeira página
+    setSearchQuery("");
+    setCurrentPage(1);
   };
 
-  // Função para mudar de página
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -186,7 +178,6 @@ export function Home() {
     },
   ];
 
-  // Paginação
   const indexOfLastImovel = currentPage * itemsPerPage;
   const indexOfFirstImovel = indexOfLastImovel - itemsPerPage;
   const currentImoveis = filteredAndSortedImoveis.slice(
@@ -194,12 +185,11 @@ export function Home() {
     indexOfLastImovel
   );
   const totalPages = Math.ceil(filteredAndSortedImoveis.length / itemsPerPage);
-  
+
   return (
     <main id="root" className=" mx-auto">
       <HeroSection onSearch={setSearchQuery} />
-      <ShapeDivider />
-      <NearbyImoveis />
+      <ImoveisNearby />
 
       {/* Componente FilterModal */}
       <FilterModal
@@ -306,18 +296,18 @@ export function Home() {
                     {imovel.planta.metragem ?? "0"}m²
                   </div>
                 </div>
-                <h2 className="font-medium text-xl my-2 text-blue-500">
+                <h2 className="font-bold uppercase text-lg my-2">
                   {imovel.nome}
                 </h2>
-                <div className="my-2 font-bold text-2xl">
-                  R$ {imovel.planta.preco?.toLocaleString()}{" "}
-                  <span className="font-light text-base">total</span>
-                </div>
                 <p>
                   {imovel.rua}, {imovel.num} - {imovel.bairro}, {imovel.cidade},
                   <br />
                   {imovel.cep}
                 </p>
+                <div className="mt-5 font-bold text-3xl">
+                  R$ {imovel.planta.preco?.toLocaleString()}{" "}
+                  <span className="font-light text-base">total</span>
+                </div>
               </div>
             </div>
           ))}
@@ -366,8 +356,7 @@ export function Home() {
             </div>
           </div>
 
-          <div className="rounded overflow-hidden">
-            {/* Coloque o componente de mapa aqui */}
+          <div className="mb-16 rounded overflow-hidden">
             <MapComponent imoveis={filteredAndSortedImoveis} />
           </div>
         </div>

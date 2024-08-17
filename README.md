@@ -15,8 +15,3 @@ Este projeto desenvolvido com React, TypeScript e Tailwind CSS permite a busca e
 - **Vite**: Ferramenta de construção e desenvolvimento.
 - **Axios**: Biblioteca para realizar requisições HTTP.
 - **Vercel**: Plataforma de hospedagem para deploy do projeto.
-
-## Instalação e Execução
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/giovanniclopes/api-imoveis-amf.git](https://github.com/giovanniclopes/api-imoveis-amf.git)

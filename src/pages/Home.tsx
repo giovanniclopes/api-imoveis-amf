@@ -336,7 +336,7 @@ export function Home() {
 
         <div className="grid grid-cols-2 gap-8 mt-24 mbl:grid-cols-1">
           <div>
-            <h2 className="text-3xl font-extrabold text-gray-500 uppercase mb-7">
+            <h2 className="text-3xl font-extrabold text-gray-500 uppercase mb-7 mbl:text-2xl">
               Explore o Nosso Mapa Interativo de Empreendimentos Imobiliários
             </h2>
             <p className="text-base mb-8">

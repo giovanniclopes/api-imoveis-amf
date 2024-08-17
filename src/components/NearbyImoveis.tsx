@@ -111,7 +111,7 @@ export function NearbyImoveis() {
   }, [userLocation, imoveis]);
 
   return (
-    <section className="my-16 mx-auto p-6 w-max border border-gray-100/40 rounded-md mbl:my-10">
+    <section className="my-16 mt-1 mx-auto p-6 w-max border border-gray-100/40 rounded-md mbl:my-10 mbl:w-full">
       <h2 className="text-xl font-medium uppercase mb-4">
         Imóveis próximos a você
       </h2>

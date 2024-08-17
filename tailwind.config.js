@@ -10,6 +10,9 @@ export default {
         urbaneLight:'Urbane Light, Roboto, sans-serif',
         urbaneBold:'Urbane Bold, Roboto, sans-serif',
       },
+      backgroundImage: {
+        heroSection:'url(./src/assets/hero-image.webp)',
+      },
       colors: {
         green: {
           100: "#e0f5f5",

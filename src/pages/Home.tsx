@@ -5,13 +5,15 @@ import { NearbyImoveis } from "../components/NearbyImoveis";
 import { FilterModal } from "../components/FilterModal";
 import MapComponent from "../components/LocationMap";
 
+
 import carIcon from "../assets/icons/car.svg";
 import bedroomIcon from "../assets/icons/bedroom.svg";
 import configIcon from "../assets/icons/config.svg";
 import filterAscendingIcon from "../assets/icons/filter-ascending-blue.svg";
 import filterDescendingIcon from "../assets/icons/filter-descending-blue.svg";
 import measureIcon from "../assets/icons/measure.svg";
-import searchIcon from "../assets/icons/search.svg";
+import { HeroSection } from "../components/HeroSection";
+import { ShapeDivider } from "../components/ShapeDivider";
 
 Modal.setAppElement("#root");
 
@@ -192,10 +194,11 @@ export function Home() {
     indexOfLastImovel
   );
   const totalPages = Math.ceil(filteredAndSortedImoveis.length / itemsPerPage);
-
+  
   return (
-    <main id="root" className=" mx-auto mbl:px-6">
-      <h1 className="text-2xl font-bold mb-4">Lista de Imóveis</h1>
+    <main id="root" className=" mx-auto">
+      <HeroSection onSearch={setSearchQuery} />
+      <ShapeDivider />
       <NearbyImoveis />
 
       {/* Componente FilterModal */}
@@ -216,42 +219,7 @@ export function Home() {
         setMaxVagas={setMaxVagas}
         resetFilters={resetFilters}
       />
-      <section className="">
-        <div className="grid grid-cols-2 grid-flow-dense bg-gray-100">
-          <div className="flex flex-col gap-6 items-start justify-center">
-            <h1 className="flex flex-col items-center justify-center font-normal text-6xl leading-normal">
-              As chaves para
-              <br />
-              <span className="text-7xl font-extrabold">O Seu Imóvel</span>
-            </h1>
-            <p className="text-lg">
-              Somos uma incorporadora que busca melhorar a experiência de
-              consumo do mercado imobiliário.
-            </p>
-            <div className="flex flex-row items-center justify-center h-14">
-              <input
-                type="text"
-                placeholder="Pesquisar imóveis..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="border rounded-l-md px-4 w-96 h-full focus:border focus:border-blue-500 focus:outline-none mbl:w-full"
-              />
-              <button
-                className="flex flex-col items-center justify-center h-full px-6 rounded-r-md bg-green-500"
-                onClick={(e) => {
-                  document
-                    .getElementById("imoveis")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                <img width={32} src={searchIcon} alt="" />
-              </button>
-            </div>
-          </div>
-          <div></div>
-        </div>
-      </section>
-      <section className="container mx-auto mt-12">
+      <section className="container mx-auto mt-12 mbl:px-10">
         <h2 className="text-3xl font-extrabold uppercase mb-4 mbl:text-2xl">
           Imóveis disponíveis
         </h2>

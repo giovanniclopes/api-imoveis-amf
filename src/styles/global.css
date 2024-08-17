@@ -57,3 +57,15 @@ body::-webkit-scrollbar-thumb {
     scrollbar-color: #15aaa6 #202020;
   }
 }
+
+
+.custom-shape-divider-top-1723859845 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 150px;
+}
+
+.custom-shape-divider-top-1723859845 .shape-fill {
+  fill: #c9c9c9;
+}

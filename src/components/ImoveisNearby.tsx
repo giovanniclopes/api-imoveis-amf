@@ -133,7 +133,7 @@ export function ImoveisNearby() {
                 {nearestImoveis.map((imovel) => (
                   <div
                     key={imovel.cep}
-                    className="flex items-center border-l border-gray-100 p-2 mbl:border-b mbl:border-l-0"
+                    className="flex items-center border-l border-gray-100 p-2 mbl:flex-col mbl:gap-5 mbl:border-b mbl:border-l-0"
                   >
                     <img
                       src={imovel.fachada}

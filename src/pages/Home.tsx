@@ -209,7 +209,7 @@ export function Home() {
         setMaxVagas={setMaxVagas}
         resetFilters={resetFilters}
       />
-      <section className="container mx-auto mt-12 mbl:px-10">
+      <section className="container mx-auto mt-12 mbl:px-5">
         <h2 className="text-3xl font-extrabold uppercase mb-4 mbl:text-2xl">
           Imóveis disponíveis
         </h2>

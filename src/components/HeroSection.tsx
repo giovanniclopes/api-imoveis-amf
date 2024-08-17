@@ -58,7 +58,7 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
           <div className="relative left-32 flex flex-col gap-6 items-start justify-center h-max p-12 py-24 bg-white border border-gray-50 rounded-md shadow-2xl md:left-12 mbl:static mbl:h-auto mbl:m-5 mbl:p-6 mbl:py-12">
             <h1 className="w-11/12 uppercase font-bold text-4xl leading-tight mbl:text-2xl mbl:font-extrabold">
               Descubra onde sua felicidade começa com o{" "}
-              <span className="font-extrabold text-green-500 underline">
+              <span className="font-urbaneBold text-green-500 underline">
                 seu imóvel
               </span>
             </h1>

@@ -111,8 +111,8 @@ export function ImoveisNearby() {
   }, [userLocation, imoveis]);
 
   return (
-    <section className="my-16 mt-1 mx-auto w-max mbl:w-full mbl:px-6">
-      <div className="p-6 border border-gray-100/40 rounded-md">
+    <section className="my-16 mt-1 mx-auto w-full mbl:w-full mbl:px-6">
+      <div className="mx-6 p-6 border border-gray-100/40 rounded-md">
         <h2 className="text-xl font-medium uppercase mb-4">
           Imóveis próximos a você
         </h2>
@@ -129,7 +129,7 @@ export function ImoveisNearby() {
         ) : userLocation ? (
           <div>
             {nearestImoveis.length > 0 ? (
-              <div className="lg:flex">
+              <div className="flex items-center justify-center mt-10 mbl:flex-col mbl:gap-5">
                 {nearestImoveis.map((imovel) => (
                   <div
                     key={imovel.cep}

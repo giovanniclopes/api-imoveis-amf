@@ -53,10 +53,10 @@ export function HeroSection({ onSearch }: HeroSectionProps) {
 
   return (
     <section>
-      <div className=" bg-gradient-to-l from-[#c3c3c3] to-[#c9c9c9] pt-24 mbl:bg-heroSection mbl:bg-cover mbl:bg-center">
+      <div className="bg-[radial-gradient(ellipse_at_left,_var(--tw-gradient-stops))] from-blue-400 via-blue-200 to-green-100 pt-24 mbl:bg-heroSection mbl:bg-cover mbl:bg-center">
         <div className="grid grid-cols-2 items-center justify-center mb-14 mbl:grid-cols-1 mbl:w-full">
           <div className="relative left-32 flex flex-col gap-6 items-start justify-center h-max p-12 py-24 bg-white border border-gray-50 rounded-md shadow-2xl md:left-12 mbl:static mbl:h-auto mbl:m-5 mbl:p-6 mbl:py-12">
-            <h1 className="uppercase font-bold text-5xl leading-tight mbl:text-2xl mbl:font-extrabold">
+            <h1 className="w-11/12 uppercase font-bold text-4xl leading-tight mbl:text-2xl mbl:font-extrabold">
               Descubra onde sua felicidade começa com o{" "}
               <span className="font-extrabold text-green-500 underline">
                 seu imóvel

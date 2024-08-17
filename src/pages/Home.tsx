@@ -145,7 +145,7 @@ export function Home() {
           onClick={toggleAccordion}
           className="w-full text-left py-4 flex justify-between items-center focus:outline-none"
         >
-          <h4 className="text-xl font-semibold text-blue-600">{title}</h4>
+          <h4 className="text-xl font-semibold text-blue-600 mbl:text-lg">{title}</h4>
           <span
             className={`transform transition-transform ${
               isOpen ? "rotate-180" : "rotate-0"

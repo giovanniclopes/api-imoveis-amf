@@ -139,7 +139,7 @@ export function ImoveisNearby() {
                       src={imovel.fachada}
                       alt={imovel.nome}
                       draggable="false"
-                      className="w-24 h-16 object-cover rounded mr-4"
+                      className="w-24 h-16 object-cover rounded mr-4 mbl:w-full mbl:h-24"
                     />
                     <div className="flex flex-col">
                       <h3 className="font-semibold text-sm">{imovel.nome}</h3>

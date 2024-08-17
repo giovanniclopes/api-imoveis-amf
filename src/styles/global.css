@@ -1,19 +1,33 @@
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+
+@font-face {
+  font-family: "Urbane Light";
+  /*Can be any text*/
+  src: local("Urbane_Light"),
+    url("../assets/fonts/urbane/Urbane_Light.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Urbane Bold";
+  /*Can be any text*/
+  src: local("Urbane_Bold"),
+    url("../assets/fonts/urbane/Urbane_Bold.otf") format("truetype");
+}
 
 p,
 span,
 label {
-  font-family: "Urbane Light", Roboto, sans-serif;
+  font-family: "Urbane Light";
 }
 
 h1,
 h2,
 h3 {
   color: #202020;
-  font-family: "Urbane Bold", Roboto, sans-serif;
+  font-family: "Urbane Bold";
 }
 
 .overlay {

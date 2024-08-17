@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiLink = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: "https://api.estagio.amfernandes.com.br/imoveis",
 });
 
 export const fetchImoveis = async () => {
